@@ -38,9 +38,9 @@ app.controller("RPSController", function(){
     // 0 = "rock"
     // 1 = "paper"
     // 2 = "scissors"
-    console.log(player, 'player');
+    // console.log(player, 'player');
     const val = Math.floor(Math.random() * 3);
-    console.log(val, 'val');
+    // console.log(val, 'val');
     if (player === val) {
       console.log("player: " + player + ", computer: " + val + ", result: tie");
       if (player === 0) {
