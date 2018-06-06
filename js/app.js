@@ -5,6 +5,15 @@ app.controller("RPSController", function(){
     rock: 0,
     paper: 0,
     scissors: 0,
+    rockWins: 0,
+    rockLosses: 0,
+    rockTies: 0,
+    paperWins: 0,
+    paperLosses: 0,
+    paperTies: 0,
+    scissorsWins: 0,
+    scissorsLosses: 0,
+    scissorsTies: 0,
   };
   this.playRock = function(){
     // console.log('user played rock');
@@ -34,18 +43,31 @@ app.controller("RPSController", function(){
     console.log(val, 'val');
     if (player === val) {
       console.log("player: " + player + ", computer: " + val + ", result: tie");
+      if (player === 0) {
+        this.userStats.rockTies += 1;
+      } else if (player === 1) {
+        this.userStats.paperTies += 1;
+      } else {
+        this.userStats.scissorsTies += 1;
+      }
     } else if (player === 0 && val === 1) {
       console.log("player: " + player + ", computer: " + val + ", result: loss");
+      this.userStats.rockLosses += 1;
     } else if (player === 0 && val === 2) {
       console.log("player: " + player + ", computer: " + val + ", result: win");
+      this.userStats.rockWins +=1;
     } else if (player === 1 && val === 0) {
       console.log("player: " + player + ", computer: " + val + ", result: win");
+      this.userStats.paperWins += 1;
     } else if (player === 1 && val === 2) {
       console.log("player: " + player + ", computer: " + val + ", result: loss");
+      this.userStats.paperLosses += 1;
     } else if (player === 2 && val === 0) {
       console.log("player: " + player + ", computer: " + val + ", result: loss");
+      this.userStats.scissorsLosses += 1;
     } else if (player === 2 && val === 1){
       console.log("player: " + player + ", computer: " + val + ", result: win");
+      this.userStats.scissorsWins += 1;
     } else {
       console.log("You done messed up, A-a-ron!");
     }

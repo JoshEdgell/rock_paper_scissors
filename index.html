@@ -11,5 +11,31 @@
     <button ng-click="main.playRock()">Throw Rock</button>
     <button ng-click="main.playPaper()">Throw Paper</button>
     <button ng-click="main.playScissors()">Throw Scissors</button>
+    <table>
+      <tr>
+        <th>Null</th>
+        <th>Rock</th>
+        <th>Paper</th>
+        <th>Scissors</th>
+      </tr>
+      <tr>
+        <td>Wins</td>
+        <td>{{main.userStats.rockWins}}</td>
+        <td>{{main.userStats.paperWins}}</td>
+        <td>{{main.userStats.scissorsWins}}</td>
+      </tr>
+      <tr>
+        <td>Losses</td>
+        <td>{{main.userStats.rockLosses}}</td>
+        <td>{{main.userStats.paperLosses}}</td>
+        <td>{{main.userStats.scissorsLosses}}</td>
+      </tr>
+      <tr>
+        <td>Ties</td>
+        <td>{{main.userStats.rockTies}}</td>
+        <td>{{main.userStats.paperTies}}</td>
+        <td>{{main.userStats.scissorsTies}}</td>
+      </tr>
+    </table>
   </body>
 </html>
