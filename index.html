@@ -11,6 +11,7 @@
     <button ng-click="main.playRock()">Throw Rock</button>
     <button ng-click="main.playPaper()">Throw Paper</button>
     <button ng-click="main.playScissors()">Throw Scissors</button>
+    <h3>Player Record Table</h3>
     <table>
       <tr>
         <th></th>
@@ -21,21 +22,51 @@
       <tr>
         <td>Wins</td>
         <td>{{main.rockStats.wins}}</td>
-        <td>{{main.userStats.paperWins}}</td>
-        <td>{{main.userStats.scissorsWins}}</td>
+        <td>{{main.paperStats.wins}}</td>
+        <td>{{main.scissorsStats.wins}}</td>
       </tr>
       <tr>
         <td>Losses</td>
         <td>{{main.rockStats.losses}}</td>
-        <td>{{main.userStats.paperLosses}}</td>
-        <td>{{main.userStats.scissorsLosses}}</td>
+        <td>{{main.paperStats.losses}}</td>
+        <td>{{main.scissorsStats.losses}}</td>
       </tr>
       <tr>
         <td>Ties</td>
         <td>{{main.rockStats.ties}}</td>
-        <td>{{main.userStats.paperTies}}</td>
-        <td>{{main.userStats.scissorsTies}}</td>
+        <td>{{main.paperStats.ties}}</td>
+        <td>{{main.scissorsStats.ties}}</td>
       </tr>
     </table>
+
+    <h3>Player Rock Tendencies</h3>
+    <table>
+      <tr>
+        <th></th>
+        <th>Rock Win</th>
+        <th>Rock Loss</th>
+        <th>Rock Tie</th>
+      </tr>
+      <tr>
+        <td>Rock</td>
+        <td>{{main.rockStats.winThen.rock}}</td>
+        <td>{{main.rockStats.lossThen.rock}}</td>
+        <td>{{main.rockStats.tieThen.rock}}</td>
+      </tr>
+      <tr>
+        <td>Paper</td>
+        <td>{{main.rockStats.winThen.paper}}</td>
+        <td>{{main.rockStats.lossThen.paper}}</td>
+        <td>{{main.rockStats.tieThen.paper}}</td>
+      </tr>
+      <tr>
+        <td>Scissors</td>
+        <td>{{main.rockStats.winThen.scissors}}</td>
+        <td>{{main.rockStats.lossThen.scissors}}</td>
+        <td>{{main.rockStats.tieThen.scissors}}</td>
+      </tr>
+    </table>
+
+
   </body>
 </html>

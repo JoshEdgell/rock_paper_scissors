@@ -29,6 +29,46 @@ app.controller("RPSController", function(){
       scissors: 0
     }
   };
+  this.paperStats = {
+    wins: 0,
+    losses: 0,
+    ties: 0,
+    winThen: {
+      rock: 0,
+      paper: 0,
+      scissors: 0
+    },
+    lossThen: {
+      rock: 0,
+      paper: 0,
+      scissors: 0
+    },
+    tieThen: {
+      rock: 0,
+      paper: 0,
+      scissors: 0
+    }
+  };
+  this.scissorsStats = {
+    wins: 0,
+    losses: 0,
+    ties: 0,
+    winThen: {
+      rock: 0,
+      paper: 0,
+      scissors: 0
+    },
+    lossThen: {
+      rock: 0,
+      paper: 0,
+      scissors: 0
+    },
+    tieThen: {
+      rock: 0,
+      paper: 0,
+      scissors: 0
+    }
+  };
   this.previousResult = null;
   this.previousPlay = null;
   this.playRock = function(){
@@ -95,42 +135,76 @@ app.controller("RPSController", function(){
     this.keepRecord(player, computer, result);
   };
   this.keepRecord = function(player, compuer, result) {
-    //If this is the first turn, there will be no previous result, so record the result of the first turn, then return out of the function.
+    console.log('Game Result: ' + result);
+    //Define a "play" variable to put the players text into a string for use elsewhere in the controller
     let play = null;
     if (player === 0) {
-      play = 'rock';
+      play = "rock";
     } else if (player === 1) {
-      play = 'paper';
+      play = "paper";
     } else {
-      play = 'scissors';
+      play = "scissors";
     }
+    //If this is the first turn, there will be no previous result, so record the result of the first turn, then return out of the method
     if (this.previousResult === null) {
       this.previousResult = result;
-      if (player === 0) {
-        this.previousPlay = 'rock';
-      } else if (player === 1) {
-        this.previousPlay = 'paper';
-      } else {
-        this.previousPlay = 'scissors';
-      }
+      this.previousPlay = play;
       return;
     }
-    if (this.previousResult === 'loss') {
-      // console.log('last time, player played ' + this.previousPlay + ' and lost');
-      // console.log('player played ' + play + ' this time.');
-      if (this.previousPlay === "rock") {
-        //Update this.rockStats.losses
-        //Update this.rockStats.lossThen
+    //The app is going to base its logic off of what has just happened in the game (player W,L,T) as well as the last thing a player threw against the computer.
+    //First, separate what the user played previously
+    //Then, separate whether or not the player just won, lost, or tied
+    //Then, record what they just played in order to learn the player's tendencies.
+    if (this.previousPlay === 'rock') {
+      if (this.previousResult === 'win') {
+        if (play === "rock") {
+          this.rockStats.winThen.rock += 1;
+        } else if (play === "paper") {
+          this.rockStats.winThen.paper += 1;
+        } else {
+          this.rockStats.winThen.scissors += 1;
+        }
+      } else if (this.previousResult === 'loss') {
+        if (play === "rock") {
+          this.rockStats.lossThen.rock += 1;
+        } else if (play === "paper") {
+          this.rockStats.lossThen.paper += 1;
+        } else {
+          this.rockStats.lossThen.scissors += 1;
+        }
+      } else if (this.previousResult === 'tie') {
+        if (play === "rock") {
+          this.rockStats.tieThen.rock += 1;
+        } else if (play === "paper") {
+          this.rockStats.tieThen.paper += 1;
+        } else {
+          this.rockStats.tieThen.scissors += 1;
+        }
+      } else {
+        console.log('You done messed up, A-a-ron!');
       }
-    } else if (this.previousResult === 'win') {
-      // console.log('last time, player played ' + this.previousPlay + ' and won');
-      // console.log('player played ' + play + ' this time.');
+    } else if (this.previousPlay === 'paper') {
+      if (this.previousResult === 'win') {
+
+      } else if (this.previousResult === 'loss') {
+
+      } else if (this.previousResult === 'tie') {
+
+      } else {
+        console.log('You done messed up, A-a-ron!');
+      }
     } else {
-      // console.log('last time, player played ' + this.previousPlay + ' and tied');
-      // console.log('player played ' + play + ' this time.');
+      if (this.previousResult === 'win') {
+
+      } else if (this.previousResult === 'loss') {
+
+      } else if (this.previousResult === 'tie') {
+
+      } else {
+        console.log('You done messed up, A-a-ron!');
+      }
     }
     this.previousResult = result;
     this.previousPlay = play;
-    console.log('updated - user played ' + this.previousPlay + ' result: ' + this.previousResult)
   }
 })
