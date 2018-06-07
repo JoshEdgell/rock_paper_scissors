@@ -101,9 +101,9 @@ app.controller("RPSController", function(){
       if (player === 0) {
         this.rockStats.ties += 1;
       } else if (player === 1) {
-        this.userStats.paperTies += 1;
+        this.paperStats.ties += 1;
       } else {
-        this.userStats.scissorsTies += 1;
+        this.scissorsStats.ties += 1;
       }
     } else if (player === 0 && computer === 1) {
       // console.log("player: " + player + ", computer: " + computer + ", result: loss");
@@ -115,19 +115,19 @@ app.controller("RPSController", function(){
       result = "win"
     } else if (player === 1 && computer === 0) {
       // console.log("player: " + player + ", computer: " + computer + ", result: win");
-      this.userStats.paperWins += 1;
+      this.paperStats.wins += 1;
       result = "win"
     } else if (player === 1 && computer === 2) {
       // console.log("player: " + player + ", computer: " + computer + ", result: loss");
-      this.userStats.paperLosses += 1;
+      this.paperStats.losses += 1;
       result = "loss"
     } else if (player === 2 && computer === 0) {
       // console.log("player: " + player + ", computer: " + computer + ", result: loss");
-      this.userStats.scissorsLosses += 1;
+      this.scissorsStats.losses += 1;
       result = "loss"
     } else if (player === 2 && computer === 1){
       // console.log("player: " + player + ", computer: " + computer + ", result: win");
-      this.userStats.scissorsWins += 1;
+      this.scissorsStats.wins += 1;
       result = "win"
     } else {
       console.log("You done messed up, A-a-ron!");
@@ -185,21 +185,57 @@ app.controller("RPSController", function(){
       }
     } else if (this.previousPlay === 'paper') {
       if (this.previousResult === 'win') {
-
+        if (play === "rock") {
+          this.paperStats.winThen.rock += 1;
+        } else if (play === "paper") {
+          this.paperStats.winThen.paper += 1;
+        } else {
+          this.paperStats.winThen.scissors += 1;
+        }
       } else if (this.previousResult === 'loss') {
-
+        if (play === "rock") {
+          this.paperStats.lossThen.rock += 1;
+        } else if (play === "paper") {
+          this.paperStats.lossThen.paper += 1;
+        } else {
+          this.paperStats.lossThen.scissors += 1;
+        }
       } else if (this.previousResult === 'tie') {
-
+        if (play === "rock") {
+          this.paperStats.tieThen.rock += 1;
+        } else if (play === "paper") {
+          this.paperStats.tieThen.paper += 1;
+        } else {
+          this.paperStats.tieThen.scissors += 1;
+        }
       } else {
         console.log('You done messed up, A-a-ron!');
       }
     } else {
       if (this.previousResult === 'win') {
-
+        if (play === "rock") {
+          this.scissorsStats.winThen.rock += 1;
+        } else if (play === "paper") {
+          this.scissorsStats.winThen.paper += 1;
+        } else {
+          this.scissorsStats.winThen.scissors += 1;
+        }
       } else if (this.previousResult === 'loss') {
-
+        if (play === "rock") {
+          this.scissorsStats.lossThen.rock += 1;
+        } else if (play === "paper") {
+          this.scissorsStats.lossThen.paper += 1;
+        } else {
+          this.scissorsStats.lossThen.scissors += 1;
+        }
       } else if (this.previousResult === 'tie') {
-
+        if (play === "rock") {
+          this.scissorsStats.tieThen.rock += 1;
+        } else if (play === "paper") {
+          this.scissorsStats.tieThen.paper += 1;
+        } else {
+          this.scissorsStats.tieThen.scissors += 1;
+        }
       } else {
         console.log('You done messed up, A-a-ron!');
       }
