@@ -154,21 +154,21 @@ app.controller("RPSController", function(){
   };
   this.keepRecord = function(player, result) {
     //Define a "play" variable to put the players text into a string for use elsewhere in the controller
-    let play = null;
-    if (player === 0) {
-      play = "rock";
-    } else if (player === 1) {
-      play = "paper";
-    } else {
-      play = "scissors";
-    }
-    console.log('player played ' + play + ' and ' + result);
-    //If this is the first turn, there will be no previous result, so record the result of the first turn, then return out of the method
-    if (this.previousResult === null) {
-      this.previousResult = result;
-      this.previousPlay = play;
-      return;
-    }
+    // let play = null;
+    // if (player === 0) {
+    //   play = "rock";
+    // } else if (player === 1) {
+    //   play = "paper";
+    // } else {
+    //   play = "scissors";
+    // }
+    // console.log('player played ' + play + ' and ' + result);
+    // //If this is the first turn, there will be no previous result, so record the result of the first turn, then return out of the method
+    // if (this.previousResult === null) {
+    //   this.previousResult = result;
+    //   this.previousPlay = play;
+    //   return;
+    // }
     //The app is going to base its logic off of what has just happened in the game (player W,L,T) as well as the last thing a player threw against the computer.
     //First, separate what the user played previously
     //Then, separate whether or not the player just won, lost, or tied
