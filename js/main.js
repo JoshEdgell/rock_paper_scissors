@@ -64,7 +64,7 @@ $(()=>{
     previousResult: null,
     previousPlay: null,
     playerChoice: null,
-    computerChoice: 'images/computer_scissors.png',
+    computerChoice: null,
   }
 
 const logic = {
@@ -110,8 +110,42 @@ const logic = {
         } else {
           console.log("You done messed up, A-a-ron!  You can't predict what he'll throw after paper!");
         }
+      } else if (stats.previousPlay === 'scissors') {
+        if (stats.previousResult === 'win') {
+          likely = Object.keys(stats.scissorsStats.winThen).reduce((a,b)=>stats.scissorsStats.winThen[a] > stats.scissorsStats.winThen[b] ? a : b);
+        } else if (stats.previousResult === 'loss') {
+          likely = Object.keys(stats.scissorsStats.lossThen).reduce((a,b)=>stats.scissorsStats.lossThen[a] > stats.scissorsStats.lossThen[b] ? a : b);
+        } else if (stats.previousResult === 'tie') {
+          likely = Object.keys(stats.scissorsStats.tieThen).reduce((a,b)=>stats.scissorsStats.tieThen[a] > stats.scissorsStats.tieThen[b] ? a : b);
+        } else {
+          console.log("You done messed up, A-a-ron!  You can't predict what he'll throw after paper!");
+        }
+      } else {
+        console.log("You done messed up, A-a-ron!  You can't figure out what the user threw last time!");
       }
-    }
+      //Based on the player's most-likely play in the next turn, return a value to beat the most-likely play. Also, update the stats.computerChoice value to show the correct image on screen.
+      if (likely === 'rock') {
+        stats.computerChoice = 'images/computer_rock.png';
+        return 1;
+      } else if (likely === 'paper') {
+        stats.computerChoice = 'images/computer_paper.png';
+        return 2;
+      } else if (likely === 'scissors') {
+        stats.computerChoice = 'images/computer_scissors.png';
+        return 0
+      } else {
+        //If this is the first game, the compute will make a random play.
+        let choice = Math.floor(Math.random() * 3);
+        if (choice === 0) {
+          stats.computerChoice = 'images/computer_scissors.png';
+        } else if (choice === 1) {
+          stats.computerChoice = 'images/computer_rock.png';
+        } else if (choice === 2) {
+          stats.computerChoice = 'images/computer_scissors.png';
+        }
+        return choice;
+      }
+    },
     keepRecord(player, result){
       //The 'play' variable will be stored in stats.previousPlay and used to track player tendencies
       let play = null;

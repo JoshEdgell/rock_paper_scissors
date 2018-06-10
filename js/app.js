@@ -106,51 +106,51 @@ app.controller("RPSController", function(){
   };
   this.computerPlay = function() {
     //Most of the following code is repetitive.  In the first if-else level, the app is just determining what the player's previous play was.  In the second if-else level, the app is determining whether the player won, lost, or tied in the previous game.  Then, the app uses the reduce function (code sampled from https://stackoverflow.com/questions/27376295/getting-key-with-the-highest-value-from-object) to determine the player's most likely play based on previous results.
-    let likely = null;
-    if (this.previousPlay === "rock") {
-      if (this.previousResult === "win") {
-        likely = Object.keys(this.rockStats.winThen).reduce((a,b)=>this.rockStats.winThen[a] > this.rockStats.winThen[b] ? a : b);
-      } else if (this.previousResult === "loss") {
-        likely = Object.keys(this.rockStats.lossThen).reduce((a,b)=>this.rockStats.lossThen[a] > this.rockStats.lossThen[b] ? a : b);
-      } else if (this.previousResult === "tie") {
-        likely = Object.keys(this.rockStats.tieThen).reduce((a,b)=>this.rockStats.tieThen[a] > this.rockStats.tieThen[b] ? a : b);
-      } else {
-        console.log('You done messed up, A-a-ron!')
-      }
-    } else if (this.previousPlay === "paper") {
-      if (this.previousResult === "win") {
-        likely = Object.keys(this.paperStats.winThen).reduce((a,b)=>this.paperStats.winThen[a] > this.paperStats.winThen[b] ? a : b);
-      } else if (this.previousResult === "loss") {
-        likely = Object.keys(this.paperStats.lossThen).reduce((a,b)=>this.paperStats.lossThen[a] > this.paperStats.lossThen[b] ? a : b);
-      } else if (this.previousResult === "tie") {
-        likely = Object.keys(this.paperStats.tieThen).reduce((a,b)=>this.paperStats.tieThen[a] > this.paperStats.tieThen[b] ? a : b);
-      } else {
-        console.log('You done messed up, A-a-ron!')
-      }
-    } else if (this.previousPlay === "scissors") {
-      if (this.previousResult === "win") {
-        likely = Object.keys(this.scissorsStats.winThen).reduce((a,b)=>this.scissorsStats.winThen[a] > this.scissorsStats.winThen[b] ? a : b);
-      } else if (this.previousResult === "loss") {
-        likely = Object.keys(this.scissorsStats.lossThen).reduce((a,b)=>this.scissorsStats.lossThen[a] > this.scissorsStats.lossThen[b] ? a : b);
-      } else if (this.previousResult === "tie") {
-        likely = Object.keys(this.scissorsStats.tieThen).reduce((a,b)=>this.scissorsStats.tieThen[a] > this.scissorsStats.tieThen[b] ? a : b);
-      } else {
-        console.log('You done messed up, A-a-ron!')
-      }
-    } else {
-      console.log('You done messed up, A-a-ron!');
-    }
+    // let likely = null;
+    // if (this.previousPlay === "rock") {
+    //   if (this.previousResult === "win") {
+    //     likely = Object.keys(this.rockStats.winThen).reduce((a,b)=>this.rockStats.winThen[a] > this.rockStats.winThen[b] ? a : b);
+    //   } else if (this.previousResult === "loss") {
+    //     likely = Object.keys(this.rockStats.lossThen).reduce((a,b)=>this.rockStats.lossThen[a] > this.rockStats.lossThen[b] ? a : b);
+    //   } else if (this.previousResult === "tie") {
+    //     likely = Object.keys(this.rockStats.tieThen).reduce((a,b)=>this.rockStats.tieThen[a] > this.rockStats.tieThen[b] ? a : b);
+    //   } else {
+    //     console.log('You done messed up, A-a-ron!')
+    //   }
+    // } else if (this.previousPlay === "paper") {
+    //   if (this.previousResult === "win") {
+    //     likely = Object.keys(this.paperStats.winThen).reduce((a,b)=>this.paperStats.winThen[a] > this.paperStats.winThen[b] ? a : b);
+    //   } else if (this.previousResult === "loss") {
+    //     likely = Object.keys(this.paperStats.lossThen).reduce((a,b)=>this.paperStats.lossThen[a] > this.paperStats.lossThen[b] ? a : b);
+    //   } else if (this.previousResult === "tie") {
+    //     likely = Object.keys(this.paperStats.tieThen).reduce((a,b)=>this.paperStats.tieThen[a] > this.paperStats.tieThen[b] ? a : b);
+    //   } else {
+    //     console.log('You done messed up, A-a-ron!')
+    //   }
+    // } else if (this.previousPlay === "scissors") {
+    //   if (this.previousResult === "win") {
+    //     likely = Object.keys(this.scissorsStats.winThen).reduce((a,b)=>this.scissorsStats.winThen[a] > this.scissorsStats.winThen[b] ? a : b);
+    //   } else if (this.previousResult === "loss") {
+    //     likely = Object.keys(this.scissorsStats.lossThen).reduce((a,b)=>this.scissorsStats.lossThen[a] > this.scissorsStats.lossThen[b] ? a : b);
+    //   } else if (this.previousResult === "tie") {
+    //     likely = Object.keys(this.scissorsStats.tieThen).reduce((a,b)=>this.scissorsStats.tieThen[a] > this.scissorsStats.tieThen[b] ? a : b);
+    //   } else {
+    //     console.log('You done messed up, A-a-ron!')
+    //   }
+    // } else {
+    //   console.log('You done messed up, A-a-ron!');
+    // }
     //Based on the player's most-likely play in the next turn, return a value to beat that most-likely play.
-    if (likely === "rock") {
-      return 1;
-    } else if (likely === "paper") {
-      return 2;
-    } else if (likely === "scissors") {
-      return 0;
-    } else {
-      //For the first game, the computer will make a random play
-      return Math.floor(Math.random() *3);
-    }
+    // if (likely === "rock") {
+    //   return 1;
+    // } else if (likely === "paper") {
+    //   return 2;
+    // } else if (likely === "scissors") {
+    //   return 0;
+    // } else {
+    //   //For the first game, the computer will make a random play
+    //   return Math.floor(Math.random() *3);
+    // }
   };
   this.keepRecord = function(player, result) {
     //Define a "play" variable to put the players text into a string for use elsewhere in the controller
