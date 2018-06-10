@@ -1,14 +1,8 @@
 const app = angular.module("RPSApp", []);
 
 app.controller("RPSController", function(){
-  this.userStats = {
-    paperWins: 0,
-    paperLosses: 0,
-    paperTies: 0,
-    scissorsWins: 0,
-    scissorsLosses: 0,
-    scissorsTies: 0,
-  };
+  this.playerImage = 'images/player_scissors.png';
+  this.computerImage = 'images/computer_paper.png';
   this.rockStats = {
     wins: 0,
     losses: 0,
