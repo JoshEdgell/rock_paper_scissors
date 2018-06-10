@@ -165,6 +165,99 @@ const logic = {
         stats.previousPlay = play;
         return;
       }
+      //The app is going to base its logic off of what has just happened in the game (player W,L,T) as well as the last thing a player threw against the computer.
+      //First, separate what the user played previously
+      //Then, separate whether or not the player just won, lost, or tied
+      //Then, record what they just played in order to learn the player's tendencies.
+      if (stats.previousPlay === 'rock') {
+        if (stats.previousResult === 'win') {
+          if (play === 'rock') {
+            stats.rockStats.winThen.rock += 1;
+          } else if (play === 'paper') {
+            stats.rockStats.winThen.paper += 1;
+          } else {
+            stats.rockStats.winThen.scissors += 1;
+          }
+        } else if (stats.previousResult === 'loss') {
+          if (play === 'rock') {
+            stats.rockStats.lossThen.rock += 1;
+          } else if (play === 'paper') {
+            stats.rockStats.lossThen.paper += 1;
+          } else {
+            stats.rockStats.lossThen.scissors += 1;
+          }
+        } else if (stats.previousResult === 'tie') {
+          if (play === 'rock') {
+            stats.rockStats.tieThen.rock += 1;
+          } else if (play === 'paper') {
+            stats.rockStats.tieThen.paper += 1;
+          } else {
+            stats.rockStats.tieThen.scissors += 1;
+          }
+        } else {
+          console.log("You done messed up, A-a-ron!  You can't tell if the player won, lost, or tied with rock!");
+        }
+      } else if (stats.previousPlay === 'paper') {
+        if (stats.previousResult === 'win') {
+          if (play === 'rock') {
+            stats.paperStats.winThen.rock += 1;
+          } else if (play === 'paper') {
+            stats.paperStats.winThen.paper += 1;
+          } else {
+            stats.paperStats.winThen.scissors += 1;
+          }
+        } else if (stats.previousResult === 'loss') {
+          if (play === 'rock') {
+            stats.paperStats.lossThen.rock += 1;
+          } else if (play === 'paper') {
+            stats.paperStats.lossThen.paper += 1;
+          } else {
+            stats.paperStats.lossThen.scissors += 1;
+          }
+        } else if (stats.previousResult === 'tie') {
+          if (play === 'rock') {
+            stats.paperStats.tieThen.rock += 1;
+          } else if (play === 'paper') {
+            stats.paperStats.tieThen.paper += 1;
+          } else {
+            stats.paperStats.tieThen.scissors += 1;
+          }
+        } else {
+          console.log("You done messed up, A-a-ron!  You can't tell if the player won, lost, or tied with paper!");
+        }
+      } else if (stats.previousPlay === 'scissors') {
+        if (stats.previousResult === 'win') {
+          if (play === 'rock') {
+            stats.scissorsStats.winThen.rock += 1;
+          } else if (play === 'paper') {
+            stats.scissorsStats.winThen.paper += 1;
+          } else {
+            stats.scissorsStats.winThen.scissors += 1;
+          }
+        } else if (stats.previousResult === 'loss') {
+          if (play === 'rock') {
+            stats.scissorsStats.lossThen.rock += 1;
+          } else if (play === 'paper') {
+            stats.scissorsStats.lossThen.paper += 1;
+          } else {
+            stats.scissorsStats.lossThen.scissors += 1;
+          }
+        } else if (stats.previousResult === 'tie') {
+          if (play === 'rock') {
+            stats.scissorsStats.tieThen.rock += 1;
+          } else if (play === 'paper') {
+            stats.scissorStats.tieThen.paper += 1;
+          } else {
+            stats.scissorsStats.tieThen.scissors += 1;
+          }
+        } else {
+          console.log("You done messed up, A-a-ron!  You can't tell if the player won, lost, or tied with scissors!");
+        }
+      } else {
+        console.log("You done messed up, A-a-ron!  You can't tell if the previous play was paper, rock, or scissors!")
+      }
+      stats.previousResult = result;
+      stats.previousPlay = play;
     },
   }
 
