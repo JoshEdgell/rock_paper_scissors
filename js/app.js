@@ -66,44 +66,44 @@ app.controller("RPSController", function(){
   this.previousResult = null;
   this.previousPlay = null;
   this.playHand = function(player) {
-    //The computer's play corresponds to the following:
-    // 0 = "rock"
-    // 1 = "paper"
-    // 2 = "scissors"
-    const computer = this.computerPlay();
-    let result = "";
-    if (player === computer) {
-      result = "tie"
-      if (player === 0) {
-        this.rockStats.ties += 1;
-      } else if (player === 1) {
-        this.paperStats.ties += 1;
-      } else {
-        this.scissorsStats.ties += 1;
-      }
-    } else if (player === 0 && computer === 1) {
-      this.rockStats.losses += 1;
-      result = "loss"
-    } else if (player === 0 && computer === 2) {
-      this.rockStats.wins +=1;
-      result = "win"
-    } else if (player === 1 && computer === 0) {
-      this.paperStats.wins += 1;
-      result = "win"
-    } else if (player === 1 && computer === 2) {
-      this.paperStats.losses += 1;
-      result = "loss"
-    } else if (player === 2 && computer === 0) {
-      this.scissorsStats.losses += 1;
-      result = "loss"
-    } else if (player === 2 && computer === 1){
-      this.scissorsStats.wins += 1;
-      result = "win"
-    } else {
-      console.log("You done messed up, A-a-ron!");
-    }
-    this.keepRecord(player, computer, result);
-  };
+  //   //The computer's play corresponds to the following:
+  //   // 0 = "rock"
+  //   // 1 = "paper"
+  //   // 2 = "scissors"
+  //   const computer = this.computerPlay();
+  //   let result = "";
+  //   if (player === computer) {
+  //     result = "tie"
+  //     if (player === 0) {
+  //       this.rockStats.ties += 1;
+  //     } else if (player === 1) {
+  //       this.paperStats.ties += 1;
+  //     } else {
+  //       this.scissorsStats.ties += 1;
+  //     }
+  //   } else if (player === 0 && computer === 1) {
+  //     this.rockStats.losses += 1;
+  //     result = "loss"
+  //   } else if (player === 0 && computer === 2) {
+  //     this.rockStats.wins +=1;
+  //     result = "win"
+  //   } else if (player === 1 && computer === 0) {
+  //     this.paperStats.wins += 1;
+  //     result = "win"
+  //   } else if (player === 1 && computer === 2) {
+  //     this.paperStats.losses += 1;
+  //     result = "loss"
+  //   } else if (player === 2 && computer === 0) {
+  //     this.scissorsStats.losses += 1;
+  //     result = "loss"
+  //   } else if (player === 2 && computer === 1){
+  //     this.scissorsStats.wins += 1;
+  //     result = "win"
+  //   } else {
+  //     console.log("You done messed up, A-a-ron!");
+  //   }
+  //   this.keepRecord(player, computer, result);
+  // };
   this.computerPlay = function() {
     //Most of the following code is repetitive.  In the first if-else level, the app is just determining what the player's previous play was.  In the second if-else level, the app is determining whether the player won, lost, or tied in the previous game.  Then, the app uses the reduce function (code sampled from https://stackoverflow.com/questions/27376295/getting-key-with-the-highest-value-from-object) to determine the player's most likely play based on previous results.
     // let likely = null;

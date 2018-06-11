@@ -67,10 +67,6 @@ $(()=>{
     computerChoice: null,
   }
 
-const logic = {
-
-}
-
   const playRound = {
     animate(){
       $('#startPlayer').remove();
@@ -147,9 +143,43 @@ const logic = {
         return choice;
       }
     },
-    // compare(player, computer){
-    //
-    // },
+    compare(player, computer){
+      //This method takes in the player input ("player"), and the computer input from the playRound.logic() method.  It compares them to determine a winner, and then passes the player input & result (in the form of 'win,' 'loss', or 'tie') to the playRound.keepRecord() method. 
+      let result = null;
+      if (player === computer) {
+        result = "tie";
+        if (player === 0 ) {
+          stats.rockStats.ties += 1;
+        } else if (player === 1) {
+          stats.paperStats.ties += 1;
+        } else if (player === 2) {
+          stats.scissorsStats.ties += 1;
+        } else {
+          console.log("You done messed up, A-a-ron!  You don't know how the player tied!");
+        }
+      } else if (player === 0 && computer === 1) {
+        stats.rockStats.losses += 1;
+        result = 'loss';
+      } else if (player === 0 && computer === 2) {
+        stats.rockStats.wins += 1;
+        result = 'win';
+      } else if (player === 1 && computer === 0) {
+        stats.paperStats.wins += 1;
+        result = 'win';
+      } else if (player === 1 && computer === 2) {
+        stats.paperStats.losses += 1;
+        result = 'loss';
+      } else if (player === 2 && computer === 0) {
+        stats.scissorsStats.losses += 1;
+        result = 'loss';
+      } else if (player === 2 && computer === 1) {
+        stats.scissorsStats.wins += 1;
+        result = 'win';
+      } else {
+        console.log("You done messed up, A-a-ron!  You can't compare throws!");
+      }
+      this.keepRecord(player, result);
+    },
     keepRecord(player, result){
       //The 'play' variable will be stored in stats.previousPlay and used to track player tendencies
       let play = null;
