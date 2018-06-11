@@ -14,36 +14,50 @@
 
       <div id="playerSpace">
       </div>
-
       <div id="computerSpace">
       </div>
-
       <div id="buttons">
         <button id="rock">Play Rock</button>
         <button id="paper">Play Paper</button>
         <button id="scissors">Play Scissors</button>
       </div>
+    </div>
 
-
+    <div class="statBox">
+      <div class="rockStats">
+        <h3>W,L,T Stats</h3>
+        <table>
+          <tr>
+            <th></th>
+            <th>Rock</th>
+            <th>Paper</th>
+            <th>Scissors</th>
+          </tr>
+          <tr>
+            <td>Wins</td>
+            <td id="rockWins">0</td>
+            <td id="paperWins">0</td>
+            <td id="scissorsWins">0</td>
+          </tr>
+          <tr>
+            <td>Losses</td>
+            <td id="rockLosses">0</td>
+            <td id="paperLosses">0</td>
+            <td id="scissorsLosses">0</td>
+          </tr>
+          <tr>
+            <td>Ties</td>
+            <td id="rockTies">0</td>
+            <td id="paperTies">0</td>
+            <td id="scissorsTies">0</td>
+          </tr>
+        </table>
+      </div>
     </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <button ng-click="main.playHand(0)">Throw Rock</button>
-    <button ng-click="main.playHand(1)">Throw Paper</button>
-    <button ng-click="main.playHand(2)">Throw Scissors</button>
-    <h3>Player Record Table</h3>
+    <!-- <h3>Player Record Table</h3>
     <table>
       <tr>
         <th></th>

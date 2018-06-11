@@ -134,27 +134,26 @@ $(()=>{
       }
       //Based on the player's most-likely play in the next turn, return a value to beat the most-likely play. Also, update the stats.computerChoice value to show the correct image on screen.
       if (likely === 'rock') {
-
-        stats.computerChoice = 'images/computer_rock.png';
+        console.log('computer thinks the most likely play is scissors - chooses paper');
+        stats.computerChoice = 'images/computer_paper.png';
         return 1;
       } else if (likely === 'paper') {
-        stats.computerChoice = 'images/computer_paper.png';
+        console.log('computer thinks the most likely play is paper - chooses scissors')
+        stats.computerChoice = 'images/computer_scissors.png';
         return 2;
       } else if (likely === 'scissors') {
-        stats.computerChoice = 'images/computer_scissors.png';
+        console.log('computer thinks the most likely play is paper - chooses rock')
+        stats.computerChoice = 'images/computer_rock.png';
         return 0
       } else {
         //If this is the first game, the compute will make a random play.
         let choice = Math.floor(Math.random() * 3);
         if (choice === 0) {
           stats.computerChoice = 'images/computer_rock.png';
-          console.log('computer chooses rock');
         } else if (choice === 1) {
           stats.computerChoice = 'images/computer_paper.png';
-          console.log('computer chooses paper');
         } else if (choice === 2) {
           stats.computerChoice = 'images/computer_scissors.png';
-          console.log('computer chooses scissors');
         }
         return choice;
       }
@@ -309,6 +308,18 @@ $(()=>{
       stats.previousResult = result;
       stats.previousPlay = play;
     },
+    renderWLT(){
+      const $rockWins = $('#rockWins').text(stats.rockStats.wins);
+      const $paperWins = $('#paperWins');
+      const $scissorsWins = $('#scissorsWins');
+      const $rockLosses = $('#rockLosses').text(stats.rockStats.losses);
+      const $paperLosses = $('#paperLosses');
+      const $scissorsLosses = $('#scissorsLosses');
+      const $rockTies = $('#rockTies').text(stats.rockStats.ties);
+      const $paperTies = $('#paperTies');
+      const $scissorsTies = $('#scissorsTies');
+
+    }
   }
 
   const $rockButton = $('#rock');
@@ -316,6 +327,7 @@ $(()=>{
     stats.playerChoice = 'images/player_rock.png';
     playRound.animate();
     playRound.compare(0, playRound.logic());
+    playRound.renderWLT();
   })
 
   const $paperButton = $('#paper');

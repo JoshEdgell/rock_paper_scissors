@@ -183,3 +183,9 @@ th {
     transform: translate(0, 0);
   }
 }
+
+.statBox {
+  border: 1px solid black;
+  width: 93%;
+  display: flex;
+}
