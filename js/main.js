@@ -87,41 +87,54 @@ $(()=>{
     logic(){
       let likely = null;
       if (stats.previousPlay === 'rock') {
+        console.log('previous play was rock');
         if (stats.previousResult === 'win') {
+          console.log('previous result was win');
           likely = Object.keys(stats.rockStats.winThen).reduce((a,b)=>stats.rockStats.winThen[a] > stats.rockStats.winThen[b] ? a : b);
         } else if (stats.previousResult === 'loss') {
+          console.log('previous result was loss');
           likely = Object.keys(stats.rockStats.lossThen).reduce((a,b)=>stats.rockStats.lossThen[a] > stats.rockStats.lossThen[b] ? a : b);
         } else if (stats.previousResult === 'tie') {
+          console.log('previous result was tie')
           likely = Object.keys(stats.rockStats.tieThen).reduce((a,b)=>stats.rockStats.tieThen[a] > stats.rockStats.tieThen[b] ? a : b);
         } else {
           console.log("You done messed up, A-a-ron!  You can't predict what he'll throw after rock!");
         }
       } else if (stats.previousPlay === 'paper') {
+        console.log('previous play was paper')
         if (stats.previousResult === 'win') {
+          console.log('previous result was win');
           likely = Object.keys(stats.paperStats.winThen).reduce((a,b)=>stats.paperStats.winThen[a] > stats.paperStats.winThen[b] ? a : b);
         } else if (stats.previousResult === 'loss') {
+          console.log('previous result was loss');
           likely = Object.keys(stats.paperStats.lossThen).reduce((a,b)=>stats.paperStats.lossThen[a] > stats.paperStats.lossThen[b] ? a : b);
         } else if (stats.previousResult === 'tie') {
+          console.log('previous result was tie')
           likely = Object.keys(stats.paperStats.tieThen).reduce((a,b)=>stats.paperStats.tieThen[a] > stats.paperStats.tieThen[b] ? a : b);
         } else {
           console.log("You done messed up, A-a-ron!  You can't predict what he'll throw after paper!");
         }
       } else if (stats.previousPlay === 'scissors') {
+        console.log('previous play was scissors');
         if (stats.previousResult === 'win') {
+          console.log('previous result was win')
           likely = Object.keys(stats.scissorsStats.winThen).reduce((a,b)=>stats.scissorsStats.winThen[a] > stats.scissorsStats.winThen[b] ? a : b);
         } else if (stats.previousResult === 'loss') {
+          console.log('previous result was loss')
           likely = Object.keys(stats.scissorsStats.lossThen).reduce((a,b)=>stats.scissorsStats.lossThen[a] > stats.scissorsStats.lossThen[b] ? a : b);
         } else if (stats.previousResult === 'tie') {
+          console.log("previous result was tie")
           likely = Object.keys(stats.scissorsStats.tieThen).reduce((a,b)=>stats.scissorsStats.tieThen[a] > stats.scissorsStats.tieThen[b] ? a : b);
         } else {
           console.log("You done messed up, A-a-ron!  You can't predict what he'll throw after paper!");
         }
       } else {
         //This error might show up for the first throw.
-        console.log("You done messed up, A-a-ron!  You can't figure out what the user threw last time!");
+        // console.log("You done messed up, A-a-ron!  You can't figure out what the user threw last time!");
       }
       //Based on the player's most-likely play in the next turn, return a value to beat the most-likely play. Also, update the stats.computerChoice value to show the correct image on screen.
       if (likely === 'rock') {
+
         stats.computerChoice = 'images/computer_rock.png';
         return 1;
       } else if (likely === 'paper') {
@@ -134,17 +147,20 @@ $(()=>{
         //If this is the first game, the compute will make a random play.
         let choice = Math.floor(Math.random() * 3);
         if (choice === 0) {
-          stats.computerChoice = 'images/computer_scissors.png';
-        } else if (choice === 1) {
           stats.computerChoice = 'images/computer_rock.png';
+          console.log('computer chooses rock');
+        } else if (choice === 1) {
+          stats.computerChoice = 'images/computer_paper.png';
+          console.log('computer chooses paper');
         } else if (choice === 2) {
           stats.computerChoice = 'images/computer_scissors.png';
+          console.log('computer chooses scissors');
         }
         return choice;
       }
     },
     compare(player, computer){
-      //This method takes in the player input ("player"), and the computer input from the playRound.logic() method.  It compares them to determine a winner, and then passes the player input & result (in the form of 'win,' 'loss', or 'tie') to the playRound.keepRecord() method. 
+      //This method takes in the player input ("player"), and the computer input from the playRound.logic() method.  It compares them to determine a winner, and then passes the player input & result (in the form of 'win,' 'loss', or 'tie') to the playRound.keepRecord() method.
       let result = null;
       if (player === computer) {
         result = "tie";
