@@ -121,6 +121,7 @@ const logic = {
           console.log("You done messed up, A-a-ron!  You can't predict what he'll throw after paper!");
         }
       } else {
+        //This error might show up for the first throw.
         console.log("You done messed up, A-a-ron!  You can't figure out what the user threw last time!");
       }
       //Based on the player's most-likely play in the next turn, return a value to beat the most-likely play. Also, update the stats.computerChoice value to show the correct image on screen.
@@ -146,6 +147,9 @@ const logic = {
         return choice;
       }
     },
+    // compare(player, computer){
+    //
+    // },
     keepRecord(player, result){
       //The 'play' variable will be stored in stats.previousPlay and used to track player tendencies
       let play = null;
@@ -265,18 +269,19 @@ const logic = {
   $rockButton.on('click', function(){
     stats.playerChoice = 'images/player_rock.png';
     playRound.animate();
+    playRound.compare(0, playRound.logic());
   })
 
   const $paperButton = $('#paper');
   $paperButton.on('click', function(){
     stats.playerChoice = 'images/player_paper.png';
-    playRound.animate();
+    playRound.animate(1, playRound.logic());
   });
 
   const $scissorsButton = $('#scissors');
   $scissorsButton.on('click', function(){
     stats.playerChoice = 'images/player_scissors.png';
-    playRound.animate();
+    playRound.animate(2, playRound.logic());
   })
 
 })
