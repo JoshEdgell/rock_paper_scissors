@@ -188,4 +188,6 @@ th {
   border: 1px solid black;
   width: 93%;
   display: flex;
+  justify-content: space-between;
+  text-align: center;
 }

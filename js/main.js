@@ -87,62 +87,38 @@ $(()=>{
     logic(){
       let likely = null;
       if (stats.previousPlay === 'rock') {
-        console.log('previous play was rock');
         if (stats.previousResult === 'win') {
-          console.log('previous result was win');
           likely = Object.keys(stats.rockStats.winThen).reduce((a,b)=>stats.rockStats.winThen[a] > stats.rockStats.winThen[b] ? a : b);
         } else if (stats.previousResult === 'loss') {
-          console.log('previous result was loss');
           likely = Object.keys(stats.rockStats.lossThen).reduce((a,b)=>stats.rockStats.lossThen[a] > stats.rockStats.lossThen[b] ? a : b);
-        } else if (stats.previousResult === 'tie') {
-          console.log('previous result was tie')
-          likely = Object.keys(stats.rockStats.tieThen).reduce((a,b)=>stats.rockStats.tieThen[a] > stats.rockStats.tieThen[b] ? a : b);
         } else {
-          console.log("You done messed up, A-a-ron!  You can't predict what he'll throw after rock!");
+          likely = Object.keys(stats.rockStats.tieThen).reduce((a,b)=>stats.rockStats.tieThen[a] > stats.rockStats.tieThen[b] ? a : b);
         }
       } else if (stats.previousPlay === 'paper') {
-        console.log('previous play was paper')
         if (stats.previousResult === 'win') {
-          console.log('previous result was win');
           likely = Object.keys(stats.paperStats.winThen).reduce((a,b)=>stats.paperStats.winThen[a] > stats.paperStats.winThen[b] ? a : b);
         } else if (stats.previousResult === 'loss') {
-          console.log('previous result was loss');
           likely = Object.keys(stats.paperStats.lossThen).reduce((a,b)=>stats.paperStats.lossThen[a] > stats.paperStats.lossThen[b] ? a : b);
-        } else if (stats.previousResult === 'tie') {
-          console.log('previous result was tie')
+        } else {
           likely = Object.keys(stats.paperStats.tieThen).reduce((a,b)=>stats.paperStats.tieThen[a] > stats.paperStats.tieThen[b] ? a : b);
-        } else {
-          console.log("You done messed up, A-a-ron!  You can't predict what he'll throw after paper!");
-        }
-      } else if (stats.previousPlay === 'scissors') {
-        console.log('previous play was scissors');
-        if (stats.previousResult === 'win') {
-          console.log('previous result was win')
-          likely = Object.keys(stats.scissorsStats.winThen).reduce((a,b)=>stats.scissorsStats.winThen[a] > stats.scissorsStats.winThen[b] ? a : b);
-        } else if (stats.previousResult === 'loss') {
-          console.log('previous result was loss')
-          likely = Object.keys(stats.scissorsStats.lossThen).reduce((a,b)=>stats.scissorsStats.lossThen[a] > stats.scissorsStats.lossThen[b] ? a : b);
-        } else if (stats.previousResult === 'tie') {
-          console.log("previous result was tie")
-          likely = Object.keys(stats.scissorsStats.tieThen).reduce((a,b)=>stats.scissorsStats.tieThen[a] > stats.scissorsStats.tieThen[b] ? a : b);
-        } else {
-          console.log("You done messed up, A-a-ron!  You can't predict what he'll throw after paper!");
         }
       } else {
-        //This error might show up for the first throw.
-        // console.log("You done messed up, A-a-ron!  You can't figure out what the user threw last time!");
+        if (stats.previousResult === 'win') {
+          likely = Object.keys(stats.scissorsStats.winThen).reduce((a,b)=>stats.scissorsStats.winThen[a] > stats.scissorsStats.winThen[b] ? a : b);
+        } else if (stats.previousResult === 'loss') {
+          likely = Object.keys(stats.scissorsStats.lossThen).reduce((a,b)=>stats.scissorsStats.lossThen[a] > stats.scissorsStats.lossThen[b] ? a : b);
+        } else {
+          likely = Object.keys(stats.scissorsStats.tieThen).reduce((a,b)=>stats.scissorsStats.tieThen[a] > stats.scissorsStats.tieThen[b] ? a : b);
+        }
       }
       //Based on the player's most-likely play in the next turn, return a value to beat the most-likely play. Also, update the stats.computerChoice value to show the correct image on screen.
       if (likely === 'rock') {
-        console.log('computer thinks the most likely play is scissors - chooses paper');
         stats.computerChoice = 'images/computer_paper.png';
         return 1;
       } else if (likely === 'paper') {
-        console.log('computer thinks the most likely play is paper - chooses scissors')
         stats.computerChoice = 'images/computer_scissors.png';
         return 2;
       } else if (likely === 'scissors') {
-        console.log('computer thinks the most likely play is paper - chooses rock')
         stats.computerChoice = 'images/computer_rock.png';
         return 0
       } else {
@@ -167,10 +143,8 @@ $(()=>{
           stats.rockStats.ties += 1;
         } else if (player === 1) {
           stats.paperStats.ties += 1;
-        } else if (player === 2) {
-          stats.scissorsStats.ties += 1;
         } else {
-          console.log("You done messed up, A-a-ron!  You don't know how the player tied!");
+          stats.scissorsStats.ties += 1;
         }
       } else if (player === 0 && computer === 1) {
         stats.rockStats.losses += 1;
@@ -187,11 +161,9 @@ $(()=>{
       } else if (player === 2 && computer === 0) {
         stats.scissorsStats.losses += 1;
         result = 'loss';
-      } else if (player === 2 && computer === 1) {
+      } else {
         stats.scissorsStats.wins += 1;
         result = 'win';
-      } else {
-        console.log("You done messed up, A-a-ron!  You can't compare throws!");
       }
       this.keepRecord(player, result);
     },
@@ -202,14 +174,11 @@ $(()=>{
         play = 'rock';
       } else if (player === 1) {
         play = 'paper';
-      } else if (player === 2) {
-        play = 'scissors';
       } else {
-        console.log('You done messed up, A-a-ron! "player" is invalid: ' + player);
+        play = 'scissors';
       }
       //If this is the first turn, there will be no previous result, so record the result of the first turn, then return out of the method.
       if (stats.previousResult === null) {
-        console.log('no previous results');
         stats.previousResult = result;
         stats.previousPlay = play;
         return;
@@ -235,7 +204,7 @@ $(()=>{
           } else {
             stats.rockStats.lossThen.scissors += 1;
           }
-        } else if (stats.previousResult === 'tie') {
+        } else {
           if (play === 'rock') {
             stats.rockStats.tieThen.rock += 1;
           } else if (play === 'paper') {
@@ -243,8 +212,6 @@ $(()=>{
           } else {
             stats.rockStats.tieThen.scissors += 1;
           }
-        } else {
-          console.log("You done messed up, A-a-ron!  You can't tell if the player won, lost, or tied with rock!");
         }
       } else if (stats.previousPlay === 'paper') {
         if (stats.previousResult === 'win') {
@@ -263,7 +230,7 @@ $(()=>{
           } else {
             stats.paperStats.lossThen.scissors += 1;
           }
-        } else if (stats.previousResult === 'tie') {
+        } else {
           if (play === 'rock') {
             stats.paperStats.tieThen.rock += 1;
           } else if (play === 'paper') {
@@ -271,10 +238,8 @@ $(()=>{
           } else {
             stats.paperStats.tieThen.scissors += 1;
           }
-        } else {
-          console.log("You done messed up, A-a-ron!  You can't tell if the player won, lost, or tied with paper!");
         }
-      } else if (stats.previousPlay === 'scissors') {
+      } else {
         if (stats.previousResult === 'win') {
           if (play === 'rock') {
             stats.scissorsStats.winThen.rock += 1;
@@ -291,19 +256,15 @@ $(()=>{
           } else {
             stats.scissorsStats.lossThen.scissors += 1;
           }
-        } else if (stats.previousResult === 'tie') {
+        } else {
           if (play === 'rock') {
             stats.scissorsStats.tieThen.rock += 1;
           } else if (play === 'paper') {
-            stats.scissorStats.tieThen.paper += 1;
+            stats.scissorsStats.tieThen.paper += 1;
           } else {
             stats.scissorsStats.tieThen.scissors += 1;
           }
-        } else {
-          console.log("You done messed up, A-a-ron!  You can't tell if the player won, lost, or tied with scissors!");
         }
-      } else {
-        console.log("You done messed up, A-a-ron!  You can't tell if the previous play was paper, rock, or scissors!")
       }
       stats.previousResult = result;
       stats.previousPlay = play;
@@ -312,13 +273,50 @@ $(()=>{
       $('#rockWins').text(stats.rockStats.wins);
       $('#paperWins').text(stats.paperStats.wins);
       $('#scissorsWins').text(stats.scissorsStats.wins);
+
       $('#rockLosses').text(stats.rockStats.losses);
       $('#paperLosses').text(stats.paperStats.losses);
       $('#scissorsLosses').text(stats.scissorsStats.losses);
+
       $('#rockTies').text(stats.rockStats.ties);
       $('#paperTies').text(stats.paperStats.ties);
       $('#scissorsTies').text(stats.scissorsStats.ties);
 
+      $('#rockWinRock').text(stats.rockStats.winThen.rock);
+      $('#rockLossRock').text(stats.rockStats.lossThen.rock);
+      $('#rockTieRock').text(stats.rockStats.tieThen.rock);
+
+      $('#rockWinPaper').text(stats.rockStats.winThen.paper);
+      $('#rockLossPaper').text(stats.rockStats.lossThen.paper);
+      $('#rockTiePaper').text(stats.rockStats.tieThen.paper);
+
+      $('#rockWinScissors').text(stats.rockStats.winThen.scissors);
+      $('#rockLossScissors').text(stats.rockStats.lossThen.scissors);
+      $('#rockTieScissors').text(stats.rockStats.tieThen.scissors);
+
+      $('#paperWinRock').text(stats.paperStats.winThen.rock);
+      $('#paperLossRock').text(stats.paperStats.lossThen.rock);
+      $('#paperTieRock').text(stats.paperStats.tieThen.rock);
+
+      $('#paperWinPaper').text(stats.paperStats.winThen.paper);
+      $('#paperLossPaper').text(stats.paperStats.lossThen.paper);
+      $('#paperTiePaper').text(stats.paperStats.tieThen.paper);
+
+      $('#paperWinScissors').text(stats.paperStats.winThen.scissors);
+      $('#paperLossScissors').text(stats.paperStats.lossThen.scissors);
+      $('#paperTieScissors').text(stats.paperStats.tieThen.scissors);
+
+      $('#scissorsWinRock').text(stats.scissorsStats.winThen.rock);
+      $('#scissorsLossRock').text(stats.scissorsStats.lossThen.rock);
+      $('#scissorsTieRock').text(stats.scissorsStats.tieThen.rock);
+
+      $('#scissorsWinPaper').text(stats.scissorsStats.winThen.paper);
+      $('#scissorsLossPaper').text(stats.scissorsStats.lossThen.paper);
+      $('#scissorsTiePaper').text(stats.scissorsStats.tieThen.paper);
+
+      $('#scissorsWinScissors').text(stats.scissorsStats.winThen.scissors);
+      $('#scissorsLossScissors').text(stats.scissorsStats.lossThen.scissors);
+      $('#scissorsTieScissors').text(stats.scissorsStats.tieThen.scissors);
     }
   }
 
@@ -327,7 +325,9 @@ $(()=>{
     stats.playerChoice = 'images/player_rock.png';
     playRound.animate();
     playRound.compare(0, playRound.logic());
-    playRound.renderStats();
+    setTimeout(function(){
+      playRound.renderStats();
+    }, 1800)
   })
 
   const $paperButton = $('#paper');
@@ -335,7 +335,9 @@ $(()=>{
     stats.playerChoice = 'images/player_paper.png';
     playRound.animate();
     playRound.compare(1, playRound.logic());
-    playRound.renderStats();
+    setTimeout(function(){
+      playRound.renderStats();
+    }, 1800)
   });
 
   const $scissorsButton = $('#scissors');
@@ -343,7 +345,9 @@ $(()=>{
     stats.playerChoice = 'images/player_scissors.png';
     playRound.animate();
     playRound.compare(2, playRound.logic());
-    playRound.renderStats();
-  })
+    setTimeout(function(){
+      playRound.renderStats();
+    }, 1800)
+  });
 
 })

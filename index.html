@@ -24,7 +24,7 @@
     </div>
 
     <div class="statBox">
-      <div class="rockStats">
+      <div class="allStats">
         <h3>W/L/T Stats</h3>
         <table>
           <tr>
@@ -53,121 +53,94 @@
           </tr>
         </table>
       </div>
+      <div class="rockStats">
+        <h3>Rock Stats</h3>
+        <table>
+          <tr>
+            <th></th>
+            <th>After Win</th>
+            <th>After Loss</th>
+            <th>After Tie</th>
+          </tr>
+          <tr>
+            <td>Rock</td>
+            <td id="rockWinRock">0</td>
+            <td id="rockLossRock">0</td>
+            <td id="rockTieRock">0</td>
+          </tr>
+          <tr>
+            <td>Paper</td>
+            <td id="rockWinPaper">0</td>
+            <td id="rockLossPaper">0</td>
+            <td id="rockTiePaper">0</td>
+          </tr>
+          <tr>
+            <td>Scissors</td>
+            <td id="rockWinScissors">0</td>
+            <td id="rockLossScissors">0</td>
+            <td id="rockTieScissors">0</td>
+          </tr>
+        </table>
+      </div>
+      <div class="paperStats">
+        <h3>Paper Stats</h3>
+        <table>
+          <tr>
+            <th></th>
+            <th>After Win</th>
+            <th>After Loss</th>
+            <th>After Tie</th>
+          </tr>
+          <tr>
+            <td>Rock</td>
+            <td id="paperWinRock">0</td>
+            <td id="paperLossRock">0</td>
+            <td id="paperTieRock">0</td>
+          </tr>
+          <tr>
+            <td>Paper</td>
+            <td id="paperWinPaper">0</td>
+            <td id="paperLossPaper">0</td>
+            <td id="paperTiePaper">0</td>
+          </tr>
+          <tr>
+            <td>Scissors</td>
+            <td id="paperWinScissors">0</td>
+            <td id="paperLossScissors">0</td>
+            <td id="paperTieScissors">0</td>
+          </tr>
+        </table>
+      </div>
+      <div class="scissorsStats">
+        <h3>Scissors Stats</h3>
+        <table>
+          <tr>
+            <th></th>
+            <th>After Win</th>
+            <th>After Loss</th>
+            <th>After Tie</th>
+          </tr>
+          <tr>
+            <td>Rock</td>
+            <td id="scissorsWinRock">0</td>
+            <td id="scissorsLossRock">0</td>
+            <td id="scissorsTieRock">0</td>
+          </tr>
+          <tr>
+            <td>Paper</td>
+            <td id="scissorsWinPaper">0</td>
+            <td id="scissorsLossPaper">0</td>
+            <td id="scissorsTiePaper">0</td>
+          </tr>
+          <tr>
+            <td>Scissors</td>
+            <td id="scissorsWinScissors">0</td>
+            <td id="scissorsLossScissors">0</td>
+            <td id="scissorsTieScissors">0</td>
+          </tr>
+        </table>
+      </div>
     </div>
-
-
-
-    <!-- <h3>Player Record Table</h3>
-    <table>
-      <tr>
-        <th></th>
-        <th>Rock</th>
-        <th>Paper</th>
-        <th>Scissors</th>
-      </tr>
-      <tr>
-        <td>Wins</td>
-        <td>{{main.rockStats.wins}}</td>
-        <td>{{main.paperStats.wins}}</td>
-        <td>{{main.scissorsStats.wins}}</td>
-      </tr>
-      <tr>
-        <td>Losses</td>
-        <td>{{main.rockStats.losses}}</td>
-        <td>{{main.paperStats.losses}}</td>
-        <td>{{main.scissorsStats.losses}}</td>
-      </tr>
-      <tr>
-        <td>Ties</td>
-        <td>{{main.rockStats.ties}}</td>
-        <td>{{main.paperStats.ties}}</td>
-        <td>{{main.scissorsStats.ties}}</td>
-      </tr>
-    </table>
-
-    <h3>Player Rock Tendencies</h3>
-    <table>
-      <tr>
-        <th></th>
-        <th>After Win</th>
-        <th>After Loss</th>
-        <th>After Tie</th>
-      </tr>
-      <tr>
-        <td>Rock</td>
-        <td>{{main.rockStats.winThen.rock}}</td>
-        <td>{{main.rockStats.lossThen.rock}}</td>
-        <td>{{main.rockStats.tieThen.rock}}</td>
-      </tr>
-      <tr>
-        <td>Paper</td>
-        <td>{{main.rockStats.winThen.paper}}</td>
-        <td>{{main.rockStats.lossThen.paper}}</td>
-        <td>{{main.rockStats.tieThen.paper}}</td>
-      </tr>
-      <tr>
-        <td>Scissors</td>
-        <td>{{main.rockStats.winThen.scissors}}</td>
-        <td>{{main.rockStats.lossThen.scissors}}</td>
-        <td>{{main.rockStats.tieThen.scissors}}</td>
-      </tr>
-    </table>
-
-    <h3>Player Paper Tendencies</h3>
-    <table>
-      <tr>
-        <th></th>
-        <th>After Win</th>
-        <th>After Loss</th>
-        <th>After Tie</th>
-      </tr>
-      <tr>
-        <td>Rock</td>
-        <td>{{main.paperStats.winThen.rock}}</td>
-        <td>{{main.paperStats.lossThen.rock}}</td>
-        <td>{{main.paperStats.tieThen.rock}}</td>
-      </tr>
-      <tr>
-        <td>Paper</td>
-        <td>{{main.paperStats.winThen.paper}}</td>
-        <td>{{main.paperStats.lossThen.paper}}</td>
-        <td>{{main.paperStats.tieThen.paper}}</td>
-      </tr>
-      <tr>
-        <td>Scissors</td>
-        <td>{{main.paperStats.winThen.scissors}}</td>
-        <td>{{main.paperStats.lossThen.scissors}}</td>
-        <td>{{main.paperStats.tieThen.scissors}}</td>
-      </tr>
-    </table>
-
-    <h3>Player Scissors Tendencies</h3>
-    <table>
-      <tr>
-        <th></th>
-        <th>After Win</th>
-        <th>After Loss</th>
-        <th>After Tie</th>
-      </tr>
-      <tr>
-        <td>Rock</td>
-        <td>{{main.scissorsStats.winThen.rock}}</td>
-        <td>{{main.scissorsStats.lossThen.rock}}</td>
-        <td>{{main.scissorsStats.tieThen.rock}}</td>
-      </tr>
-      <tr>
-        <td>Paper</td>
-        <td>{{main.scissorsStats.winThen.paper}}</td>
-        <td>{{main.scissorsStats.lossThen.paper}}</td>
-        <td>{{main.scissorsStats.tieThen.paper}}</td>
-      </tr>
-      <tr>
-        <td>Scissors</td>
-        <td>{{main.scissorsStats.winThen.scissors}}</td>
-        <td>{{main.scissorsStats.lossThen.scissors}}</td>
-        <td>{{main.scissorsStats.tieThen.scissors}}</td>
-      </tr>
-    </table> -->
 
 
 
