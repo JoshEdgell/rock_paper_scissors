@@ -308,16 +308,16 @@ $(()=>{
       stats.previousResult = result;
       stats.previousPlay = play;
     },
-    renderWLT(){
-      const $rockWins = $('#rockWins').text(stats.rockStats.wins);
-      const $paperWins = $('#paperWins');
-      const $scissorsWins = $('#scissorsWins');
-      const $rockLosses = $('#rockLosses').text(stats.rockStats.losses);
-      const $paperLosses = $('#paperLosses');
-      const $scissorsLosses = $('#scissorsLosses');
-      const $rockTies = $('#rockTies').text(stats.rockStats.ties);
-      const $paperTies = $('#paperTies');
-      const $scissorsTies = $('#scissorsTies');
+    renderStats(){
+      $('#rockWins').text(stats.rockStats.wins);
+      $('#paperWins').text(stats.paperStats.wins);
+      $('#scissorsWins').text(stats.scissorsStats.wins);
+      $('#rockLosses').text(stats.rockStats.losses);
+      $('#paperLosses').text(stats.paperStats.losses);
+      $('#scissorsLosses').text(stats.scissorsStats.losses);
+      $('#rockTies').text(stats.rockStats.ties);
+      $('#paperTies').text(stats.paperStats.ties);
+      $('#scissorsTies').text(stats.scissorsStats.ties);
 
     }
   }
@@ -327,19 +327,23 @@ $(()=>{
     stats.playerChoice = 'images/player_rock.png';
     playRound.animate();
     playRound.compare(0, playRound.logic());
-    playRound.renderWLT();
+    playRound.renderStats();
   })
 
   const $paperButton = $('#paper');
   $paperButton.on('click', function(){
     stats.playerChoice = 'images/player_paper.png';
-    playRound.animate(1, playRound.logic());
+    playRound.animate();
+    playRound.compare(1, playRound.logic());
+    playRound.renderStats();
   });
 
   const $scissorsButton = $('#scissors');
   $scissorsButton.on('click', function(){
     stats.playerChoice = 'images/player_scissors.png';
-    playRound.animate(2, playRound.logic());
+    playRound.animate();
+    playRound.compare(2, playRound.logic());
+    playRound.renderStats();
   })
 
 })
