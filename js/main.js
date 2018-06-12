@@ -85,7 +85,19 @@ $(()=>{
       }, 1800);
     },
     logic(){
-      let likely = null;
+      if (stats.previousPlay === null) {
+        //If this is the first game, the compute will make a random play.
+        let choice = Math.floor(Math.random() * 3);
+        if (choice === 0) {
+          stats.computerChoice = 'images/computer_rock.png';
+        } else if (choice === 1) {
+          stats.computerChoice = 'images/computer_paper.png';
+        } else {
+          stats.computerChoice = 'images/computer_scissors.png';
+        }
+        return choice;
+      }
+      let likely = '';
       if (stats.previousPlay === 'rock') {
         if (stats.previousResult === 'win') {
           likely = Object.keys(stats.rockStats.winThen).reduce((a,b)=>stats.rockStats.winThen[a] > stats.rockStats.winThen[b] ? a : b);
@@ -118,20 +130,9 @@ $(()=>{
       } else if (likely === 'paper') {
         stats.computerChoice = 'images/computer_scissors.png';
         return 2;
-      } else if (likely === 'scissors') {
-        stats.computerChoice = 'images/computer_rock.png';
-        return 0
       } else {
-        //If this is the first game, the compute will make a random play.
-        let choice = Math.floor(Math.random() * 3);
-        if (choice === 0) {
-          stats.computerChoice = 'images/computer_rock.png';
-        } else if (choice === 1) {
-          stats.computerChoice = 'images/computer_paper.png';
-        } else if (choice === 2) {
-          stats.computerChoice = 'images/computer_scissors.png';
-        }
-        return choice;
+        stats.computerChoice = 'images/computer_rock.png';
+        return 0;
       }
     },
     compare(player, computer){
