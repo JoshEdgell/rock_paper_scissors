@@ -322,31 +322,37 @@ $(()=>{
 
   const $rockButton = $('#rock');
   $rockButton.on('click', function(){
+    $rockButton.attr('id','startButton');
     stats.playerChoice = 'images/player_rock.png';
     playRound.animate();
     playRound.compare(0, playRound.logic());
     setTimeout(function(){
       playRound.renderStats();
+      $rockButton.removeAttr('id');
     }, 1800)
   })
 
   const $paperButton = $('#paper');
   $paperButton.on('click', function(){
+    $paperButton.attr('id','startButton');
     stats.playerChoice = 'images/player_paper.png';
     playRound.animate();
     playRound.compare(1, playRound.logic());
     setTimeout(function(){
       playRound.renderStats();
+      $paperButton.removeAttr('id');
     }, 1800)
   });
 
   const $scissorsButton = $('#scissors');
   $scissorsButton.on('click', function(){
+    $scissorsButton.attr('id','startButton');
     stats.playerChoice = 'images/player_scissors.png';
     playRound.animate();
     playRound.compare(2, playRound.logic());
     setTimeout(function(){
       playRound.renderStats();
+      $scissorsButton.removeAttr('id');
     }, 1800)
   });
 
