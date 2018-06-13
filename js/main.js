@@ -357,4 +357,14 @@ $(()=>{
     }, 1800)
   });
 
+  const $statButton = $('#statButton');
+  $statButton.on('click', function(){
+    $('.statModal').css('display','block');
+  })
+
+  const $closeButton = $('#closeStats');
+  $closeButton.on('click', function(){
+    $('.statModal').css('display','none');
+  })
+
 })

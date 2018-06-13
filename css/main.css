@@ -118,6 +118,19 @@ th {
   text-align: center;
 }
 
+.statModal {
+  height: 80%;
+  width: 80%;
+  margin-left: 10%;
+  top: 10%;
+  border: 5px solid blue;
+  border-radius: 40px;
+  background: lightgray;
+  position: fixed;
+  /* top: 0; */
+  display: none;
+}
+
 
 /* neon glow borrowed from (https://codepen.io/FelixRilling/pen/qzfoc) */
 @-webkit-keyframes neonGlow {
