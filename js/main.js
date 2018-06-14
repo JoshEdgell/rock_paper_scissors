@@ -62,7 +62,7 @@ $(()=>{
       }
     },
     previousResult: null,
-    resultText: null,
+    resultText: 'basic result text',
     previousPlay: null,
     playerChoice: null,
     computerChoice: null,
@@ -170,11 +170,12 @@ $(()=>{
       if (result === 'tie') {
         stats.resultText = 'You Tied!';
       } else if (result === 'win') {
-        stats.restultText = 'You Won!';
+        stats.resultText = 'You Won!';
       } else {
         stats.resultText = 'You Lost!';
       }
-      const $resultText = $('</p>').text(stats.resultText);
+      $('#result').remove();
+      const $resultText = $('</p>').text(stats.resultText).attr('id','result');
       console.log($resultText,'result');
       $('#resultsModal').append($resultText);
       this.keepRecord(player, result);
