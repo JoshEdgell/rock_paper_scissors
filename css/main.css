@@ -6,6 +6,7 @@ body {
   -o-user-select: none;
   user-select: none;
   min-width: 738px;
+  width: 100%;
 }
 
 h1, h3 {
@@ -110,25 +111,37 @@ th {
   animation: animateComputer 2s;
 }
 
-.statBox {
-  border: 1px solid black;
-  width: 93%;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-}
-
-.statModal {
+.Modal {
   height: 80%;
   width: 80%;
   margin-left: 10%;
   top: 10%;
   border: 5px solid blue;
-  border-radius: 40px;
+  border-radius: 25px;
   background: lightgray;
   position: fixed;
-  /* top: 0; */
+}
+
+#statModal {
   display: none;
+}
+
+#resultsModal {
+  height: 20.5em;
+  width: 70%;
+  margin-top: 5.74em;
+  margin-left: 15%;
+  display: none;
+}
+
+#resultText {
+  text-align: center;
+}
+
+#statButton {
+  display: block;
+  margin: 0 auto;
+  margin-top: 1em;
 }
 
 

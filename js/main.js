@@ -62,6 +62,7 @@ $(()=>{
       }
     },
     previousResult: null,
+    resultText: null,
     previousPlay: null,
     playerChoice: null,
     computerChoice: null,
@@ -166,6 +167,16 @@ $(()=>{
         stats.scissorsStats.wins += 1;
         result = 'win';
       }
+      if (result === 'tie') {
+        stats.resultText = 'You Tied!';
+      } else if (result === 'win') {
+        stats.restultText = 'You Won!';
+      } else {
+        stats.resultText = 'You Lost!';
+      }
+      const $resultText = $('</p>').text(stats.resultText);
+      console.log($resultText,'result');
+      $('#resultsModal').append($resultText);
       this.keepRecord(player, result);
     },
     keepRecord(player, result){
@@ -330,7 +341,10 @@ $(()=>{
     setTimeout(function(){
       playRound.renderStats();
       $rockButton.removeAttr('id');
-    }, 1800)
+    }, 1800);
+    setTimeout(function(){
+      $('#resultsModal').css('display','block');
+    }, 2800);
   })
 
   const $paperButton = $('#paper');
@@ -342,7 +356,10 @@ $(()=>{
     setTimeout(function(){
       playRound.renderStats();
       $paperButton.removeAttr('id');
-    }, 1800)
+    }, 1800);
+    setTimeout(function(){
+      $('#resultsModal').css('display','block');
+    }, 2800);
   });
 
   const $scissorsButton = $('#scissors');
@@ -354,17 +371,25 @@ $(()=>{
     setTimeout(function(){
       playRound.renderStats();
       $scissorsButton.removeAttr('id');
-    }, 1800)
+    }, 1800);
+    setTimeout(function(){
+      $('#resultsModal').css('display','block');
+    }, 2800);
   });
 
   const $statButton = $('#statButton');
   $statButton.on('click', function(){
-    $('.statModal').css('display','block');
+    $('#statModal').css('display','block');
   })
 
-  const $closeButton = $('#closeStats');
-  $closeButton.on('click', function(){
-    $('.statModal').css('display','none');
+  const $closeStats = $('#closeStats');
+  $closeStats.on('click', function(){
+    $('#statModal').css('display','none');
+  })
+
+  const $closeResults = $('#closeResults');
+  $closeResults.on('click', function(){
+    $('#resultsModal').css('display','none');
   })
 
 })
