@@ -177,7 +177,7 @@ $(()=>{
       $('#result').remove();
       const $resultText = $('</p>').text(stats.resultText).attr('id','result');
       console.log($resultText,'result');
-      $('#resultsModal').append($resultText);
+      $('#resultsModal').prepend($resultText);
       this.keepRecord(player, result);
     },
     keepRecord(player, result){
@@ -385,7 +385,7 @@ $(()=>{
 
   const $closeStats = $('#closeStats');
   $closeStats.on('click', function(){
-    $('#statModal').css('display','none');
+    $('.Modal').css('display','none');
   })
 
   const $closeResults = $('#closeResults');
