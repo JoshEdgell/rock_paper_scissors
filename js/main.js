@@ -339,8 +339,8 @@ $(()=>{
     stats.playerChoice = 'images/player_rock.png';
     playRound.animate();
     playRound.compare(0, playRound.logic());
+    playRound.renderStats();
     setTimeout(function(){
-      playRound.renderStats();
       $rockButton.removeAttr('id');
     }, 1800);
     setTimeout(function(){
@@ -354,8 +354,8 @@ $(()=>{
     stats.playerChoice = 'images/player_paper.png';
     playRound.animate();
     playRound.compare(1, playRound.logic());
+    playRound.renderStats();
     setTimeout(function(){
-      playRound.renderStats();
       $paperButton.removeAttr('id');
     }, 1800);
     setTimeout(function(){
@@ -369,8 +369,8 @@ $(()=>{
     stats.playerChoice = 'images/player_scissors.png';
     playRound.animate();
     playRound.compare(2, playRound.logic());
+    playRound.renderStats();
     setTimeout(function(){
-      playRound.renderStats();
       $scissorsButton.removeAttr('id');
     }, 1800);
     setTimeout(function(){

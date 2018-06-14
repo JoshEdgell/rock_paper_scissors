@@ -131,6 +131,17 @@ th {
 
 #statModal {
   display: none;
+  height: 30em;
+}
+
+#statBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stats {
+  margin: 1em 4em;
 }
 
 #resultsModal {
